@@ -1,396 +1,513 @@
 <!DOCTYPE html>
-<html lang="ru" class="theme-dark">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aqua Code V1</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>AquaCode</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--fu:'Inter',sans-serif;--fm:'JetBrains Mono',monospace;--fd:'Orbitron',sans-serif;--r1:8px;--r2:12px;--r3:16px;--tr:0.2s ease}
-.theme-dark{--c1:#00D4FF;--c1r:0,212,255;--c2:#7C4DFF;--bg:#010409;--s1:#0D1117;--s2:#161B22;--tx:#E6EDF3;--tm:#8B949E;--td:#484F58;--bd:#21262D;--ok:#4ADE80;--er:#FF7B72}
-.theme-aqua{--c1:#00838F;--c1r:0,131,143;--c2:#0288D1;--bg:#F0FDFF;--s1:#FFF;--s2:#E0F7FA;--tx:#004D40;--tm:#00695C;--td:#B2EBF2;--bd:#B2EBF2;--ok:#66BB6A;--er:#D32F2F}
-.theme-white{--c1:#00D4FF;--c1r:0,212,255;--c2:#0066FF;--bg:#FFF;--s1:#F8FAFC;--s2:#F1F5F9;--tx:#0F172A;--tm:#64748B;--td:#CBD5E1;--bd:#E2E8F0;--ok:#10B981;--er:#DC2626}
-body{font-family:var(--fu);background:var(--bg);color:var(--tx);overflow:hidden;height:100vh}
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px}
-@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-@keyframes sp{to{transform:rotate(360deg)}}
+html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:#fafafa;color:#1a1a2e}
 
-/* ── TITLE BAR ── */
-.tb{height:46px;display:flex;align-items:center;justify-content:space-between;background:var(--s1);border-bottom:1px solid var(--bd);padding:0 12px;user-select:none}
-.tb-l,.tb-r{display:flex;align-items:center;gap:8px}
-.logo{display:flex;align-items:center;gap:8px;padding:6px 14px;background:linear-gradient(135deg,var(--c1),var(--c2));border-radius:var(--r2);box-shadow:0 4px 16px rgba(var(--c1r),.3)}
-.logo svg{width:14px;height:14px;fill:#fff}
-.logo b{font:800 11px var(--fd);color:#fff;letter-spacing:2px}
-.mb{background:none;border:none;color:var(--tm);font:500 12px var(--fu);padding:7px 10px;border-radius:var(--r1);cursor:pointer;transition:var(--tr)}
-.mb:hover{color:var(--tx);background:rgba(var(--c1r),.08)}
-.lb{display:flex;align-items:center;gap:5px;padding:5px 10px;background:rgba(var(--c1r),.12);border:1px solid rgba(var(--c1r),.3);border-radius:8px;color:var(--c1);cursor:pointer;font:700 10px var(--fd);letter-spacing:1px;transition:var(--tr)}
-.lb:hover{background:rgba(var(--c1r),.2)}
-.vb{padding:4px 8px;background:rgba(var(--c1r),.12);border:1px solid rgba(var(--c1r),.3);border-radius:6px;font:700 9px var(--fd);color:var(--c1);letter-spacing:1px}
+/* тёмная тема */
+body.dark{background:#111827;color:#e5e7eb}
+.dark .topbar{background:#1f2937;border-color:#374151}
+.dark .sidebar{background:#1f2937;border-color:#374151}
+.dark .activity{background:#111827;border-color:#374151}
+.dark .activity button{color:#9ca3af}
+.dark .activity button.active{color:#38bdf8;background:rgba(56,189,248,.1)}
+.dark .editor{background:#0f172a}
+.dark .tabs{background:#1e293b;border-color:#334155}
+.dark .tab{color:#94a3b8}
+.dark .tab.active{color:#fff;background:#0f172a}
+.dark .line-num{color:#475569}
+.dark textarea{color:#e2e8f0}
+.dark .sidebar-head{border-color:#374151}
+.dark .file-item:hover{background:rgba(255,255,255,.04)}
+.dark .file-item.selected{background:rgba(56,189,248,.08);color:#38bdf8}
+.dark .search-box{background:#0f172a;border-color:#374151;color:#e5e7eb}
+.dark .chat{background:#1f2937;border-color:#374151}
+.dark .chat-head{border-color:#374151}
+.dark .chat-input{background:#0f172a;border-color:#374151;color:#e5e7eb}
+.dark .msg-ai .bubble{background:#1e293b;border-color:#334155}
+.dark .msg-user .bubble{background:rgba(56,189,248,.1);border-color:rgba(56,189,248,.2)}
+.dark .msg-user .bubble{border-color:rgba(56,189,248,.15);background:rgba(56,189,248,.06)}
+.dark .bubble{color:#e5e7eb}
+.dark .settings{background:#111827}
+.dark .settings .panel{background:#1f2937;border-color:#374151}
+.dark .settings .item{color:#d1d5db}
+.dark .settings .item:hover{background:rgba(255,255,255,.05)}
+.dark .settings .item.active{color:#38bdf8;background:rgba(56,189,248,.08)}
+.dark .settings .content{color:#e5e7eb}
+.dark .settings h3{color:#f9fafb}
+.dark .toggle{background:#4b5563}
+.dark .toggle.on{background:#38bdf8}
+.dark .select-opt{border-color:#374151;color:#d1d5db}
+.dark .select-opt:hover{border-color:#6b7280}
+.dark .select-opt.chosen{border-color:#38bdf8;background:rgba(56,189,248,.05)}
+.dark .slider{-webkit-appearance:none;background:#374151}
+.dark .slider::-webkit-slider-thumb{-webkit-appearance:none;background:#38bdf8}
+.dark .toast{background:#1f2937;color:#e5e7eb;border:1px solid #374151}
+.dark .topbar{color:#e5e7eb}
 
-/* ── MAIN ── */
-.mn{display:flex;height:calc(100vh - 46px)}
+/* верхняя панель */
+.topbar{display:flex;align-items:center;justify-content:space-between;height:40px;padding:0 12px;background:#fff;border-bottom:1px solid #e5e7eb;user-select:none;-webkit-user-region:drag;font-size:13px}
+.topbar>*{-webkit-user-region:no-drag}
+.topbar-left{display:flex;align-items:center;gap:12px}
+.app-name{font-weight:700;font-size:14px;letter-spacing:.5px;color:#38bdf8}
+.topbar-menu{display:flex;gap:2px}
+.topbar-menu button{background:none;border:none;color:#6b7280;font:500 12px/1 'DM Sans',sans-serif;padding:5px 10px;border-radius:4px;cursor:pointer}
+.topbar-menu button:hover{background:rgba(0,0,0,.05);color:#111827}
+.dark .topbar-menu button:hover{background:rgba(255,255,255,.08);color:#f9fafb}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.lang-btn{font-size:11px;font-weight:700;padding:4px 10px;border:1px solid #d1d5db;border-radius:4px;background:none;color:#6b7280;cursor:pointer;letter-spacing:.5px}
+.lang-btn:hover{border-color:#9ca3af}
+.dark .lang-btn{border-color:#4b5563;color:#9ca3af}
+.dark .lang-btn:hover{border-color:#6b7280}
+.ver{font-size:10px;color:#9ca3af;font-weight:500}
 
-/* ── ACTIVITY BAR ── */
-.ab{width:46px;display:flex;flex-direction:column;justify-content:space-between;background:var(--s1);border-right:1px solid var(--bd);padding:10px 0}
-.ab-g{display:flex;flex-direction:column;gap:3px;align-items:center}
-.ab-i{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--tm);cursor:pointer;border-radius:var(--r1);transition:var(--tr)}
-.ab-i:hover{background:rgba(var(--c1r),.08);color:var(--tx)}
-.ab-i.on{background:rgba(var(--c1r),.12);border:1.5px solid rgba(var(--c1r),.35);color:var(--c1)}
-.ab-i svg{width:17px;height:17px;fill:currentColor}
+/* основная область */
+.main{display:flex;height:calc(100vh - 40px)}
 
-/* ── SIDEBAR ── */
-.sb{width:250px;display:flex;flex-direction:column;background:var(--s1);border-right:1px solid var(--bd);flex-shrink:0}
-.sb-h{height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
-.sb-t{display:flex;align-items:center;gap:7px}
-.sb-t span{font:700 9px var(--fd);color:var(--c1);letter-spacing:1.5px}
-.sb-ic{display:flex;align-items:center;justify-content:center;padding:4px;background:rgba(var(--c1r),.15);border-radius:6px;color:var(--c1)}
-.sb-ic svg{width:11px;height:11px;fill:currentColor}
-.sb-a{display:flex;gap:2px}
-.sba{width:22px;height:22px;display:flex;align-items:center;justify-content:center;background:rgba(var(--c1r),.08);border:none;border-radius:5px;color:var(--c1);cursor:pointer}
-.sba:hover{background:rgba(var(--c1r),.15)}
-.sba svg{width:11px;height:11px;fill:currentColor}
-.sb-s{padding:4px 6px}
-.sb-s input{width:100%;padding:7px 10px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r1);color:var(--tx);font:12px var(--fu);outline:none;transition:var(--tr)}
-.sb-s input:focus{border-color:var(--c1);box-shadow:0 0 0 2px rgba(var(--c1r),.1)}
-.sb-s input::placeholder{color:var(--td)}
-.ft{flex:1;overflow-y:auto;padding:2px 0}
-.fn{display:flex;align-items:center;gap:5px;padding:5px 6px;margin:1px 3px;border-radius:6px;cursor:pointer;transition:var(--tr)}
-.fn:hover{background:rgba(var(--c1r),.05)}
-.fn.sel{background:rgba(var(--c1r),.1);outline:1px solid rgba(var(--c1r),.25)}
-.fa{width:15px;display:flex;align-items:center;justify-content:center;color:var(--tm);transition:transform .2s;flex-shrink:0}
-.fa svg{width:15px;height:15px;fill:currentColor}
-.fa.ex{transform:rotate(90deg)}
-.fa.hi{visibility:hidden}
-.fi{display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;flex-shrink:0}
-.fi svg{width:11px;height:11px;fill:currentColor}
-.fi.dir{background:rgba(255,202,40,.12);color:#FFCA28}
-.fi.js{background:rgba(247,223,30,.15);color:#C8B400}
-.fi.html{background:rgba(227,79,38,.12);color:#E34F26}
-.fi.css{background:rgba(21,114,182,.12);color:#1572B6}
-.fi.json{background:rgba(76,175,80,.12);color:#4CAF50}
-.fi.md{background:rgba(156,39,176,.12);color:#9C27B0}
-.fi.def{background:rgba(120,144,156,.12);color:#78909C}
-.fn-n{flex:1;font-size:11px;color:var(--tx);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.fn.sel .fn-n{font-weight:600;color:var(--c1)}
-.sb-f{display:flex;justify-content:space-evenly;padding:6px;border-top:1px solid var(--bd)}
-.sbf{display:flex;align-items:center;justify-content:center;padding:6px;background:rgba(var(--c1r),.08);border:1px solid rgba(var(--c1r),.12);border-radius:var(--r2);color:var(--c1);cursor:pointer;transition:var(--tr)}
-.sbf:hover{background:rgba(var(--c1r),.15);transform:translateY(-1px)}
-.sbf svg{width:15px;height:15px;fill:currentColor}
+/* левая панель иконок */
+.activity{width:42px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:8px 0;background:#fff;border-right:1px solid #e5e7eb}
+.activity-top,.activity-bot{display:flex;flex-direction:column;gap:2px;align-items:center}
+.activity button{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:#9ca3af;border-radius:6px;cursor:pointer}
+.activity button:hover{color:#374151;background:rgba(0,0,0,.04)}
+.activity button.active{color:#0ea5e9;background:rgba(14,165,233,.08)}
+.activity button svg{width:18px;height:18px;fill:currentColor}
 
-/* ── EDITOR ── */
-.ed{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
-.et{height:34px;display:flex;align-items:center;background:rgba(var(--c1r),.03);border-bottom:1px solid var(--bd);overflow-x:auto}
-.et::-webkit-scrollbar{height:0}
-.tb2{display:flex;align-items:center;gap:5px;height:100%;padding:0 12px;background:none;border:none;color:var(--tm);font:11px var(--fu);cursor:pointer;border-right:1px solid var(--bd);white-space:nowrap;transition:var(--tr)}
-.tb2:hover{background:rgba(var(--c1r),.04)}
-.tb2.on{background:rgba(var(--c1r),.08);color:var(--c1);box-shadow:inset 0 -2px 0 var(--c1)}
-.tbc{width:16px;height:16px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--tm);cursor:pointer;border-radius:3px;font-size:13px}
-.tbc:hover{background:rgba(var(--c1r),.15);color:var(--tx)}
-.eb{flex:1;display:flex;overflow:hidden;position:relative}
-.ln{width:44px;background:rgba(var(--c1r),.03);border-right:1px solid var(--bd);overflow:hidden;padding:14px 0}
-.li2{height:19px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font:10px var(--fm);color:rgba(var(--c1r),.3)}
-.ce{flex:1;padding:14px;background:none;border:none;color:var(--tx);font:13px/1.7 var(--fm);resize:none;outline:none;tab-size:2;white-space:pre;overflow:auto}
-.es{position:absolute;right:10px;bottom:10px;display:none;align-items:center;gap:5px;padding:6px 10px;background:rgba(var(--c1r),.08);border:1px solid rgba(var(--c1r),.2);border-radius:6px}
-.esn{font:600 10px var(--fu);color:var(--c1)}
+/* сайдбар файлов */
+.sidebar{width:220px;display:flex;flex-direction:column;background:#fff;border-right:1px solid #e5e7eb}
+.sidebar-head{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb}
+.sidebar-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280}
+.sidebar-btns{display:flex;gap:4px}
+.sidebar-btns button{width:22px;height:22px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid #e5e7eb;border-radius:4px;color:#9ca3af;cursor:pointer}
+.sidebar-btns button:hover{color:#0ea5e9;border-color:#0ea5e9}
+.dark .sidebar-btns button{border-color:#4b5563}
+.dark .sidebar-btns button:hover{border-color:#38bdf8}
+.sidebar-btns button svg{width:12px;height:12px;fill:currentColor}
+.search-box{margin:8px 10px;padding:6px 10px;border:1px solid #e5e7eb;border-radius:6px;font:13px 'DM Sans',sans-serif;outline:none;width:calc(100% - 20px)}
+.search-box:focus{border-color:#0ea5e9}
+.files{flex:1;overflow-y:auto;padding:4px 0}
+.file-item{display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:#374151;transition:background .1s}
+.file-item:hover{background:rgba(0,0,0,.03)}
+.file-item.selected{background:rgba(14,165,233,.07);color:#0ea5e9;font-weight:500}
+.file-item .icon{width:16px;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.file-item .icon.folder{background:#fef3c7;color:#d97706}
+.file-item .icon.js{background:#fef9c3;color:#ca8a04}
+.file-item .icon.html{background:#fee2e2;color:#dc2626}
+.file-item .icon.css{background:#dbeafe;color:#2563eb}
+.file-item .icon.json{background:#d1fae5;color:#059669}
+.file-item .icon.md{background:#ede9fe;color:#7c3aed}
+.file-item .icon.default{background:#f3f4f6;color:#6b7280}
+.dark .file-item .icon.default{background:#374151;color:#9ca3af}
+.file-item .arrow{font-size:10px;color:#9ca3af;transition:transform .15s}
+.file-item .arrow.open{transform:rotate(90deg)}
+.file-children{padding-left:16px}
 
-/* ── WELCOME ── */
-.wc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;animation:fi .4s}
-.wl{margin-bottom:28px;padding:32px;background:radial-gradient(circle,rgba(var(--c1r),.12),transparent);border-radius:50%}
-.wli{padding:24px;background:linear-gradient(135deg,rgba(var(--c1r),.2),rgba(var(--c2),.1));border:1px solid rgba(var(--c1r),.2);border-radius:50%;color:rgba(var(--c1r),.6)}
-.wli svg{width:56px;height:56px;fill:currentColor}
-.wt{font:800 24px/1 var(--fd);letter-spacing:4px;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
-.ws2{font:400 14px var(--fu);color:var(--tm);margin-bottom:28px}
-.wcr{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.wcd{width:150px;padding:16px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r3);text-align:center;cursor:pointer;transition:var(--tr)}
-.wcd:hover{transform:translateY(-2px);border-color:rgba(var(--c1r),.3);box-shadow:0 8px 24px rgba(0,0,0,.1)}
-.wcd-i{display:flex;align-items:center;justify-content:center;width:38px;height:38px;margin:0 auto 8px;background:linear-gradient(135deg,rgba(var(--c1r),.15),rgba(var(--c1r),.05));border-radius:var(--r2);color:var(--c1)}
-.wcd-i svg{width:18px;height:18px;fill:currentColor}
-.wcd span{display:block;font:600 12px var(--fu);color:var(--tx);margin-bottom:2px}
-.wcd small{font-size:11px;color:var(--tm)}
+/* редактор */
+.editor{flex:1;display:flex;flex-direction:column;background:#fafafa}
+.tabs{display:flex;background:#f3f4f6;border-bottom:1px solid #e5e7eb;overflow-x:auto}
+.tabs::-webkit-scrollbar{height:0}
+.tab{display:flex;align-items:center;gap:6px;padding:0 14px;height:34px;border:none;background:none;border-bottom:2px solid transparent;color:#6b7280;font:500 12px 'DM Sans',sans-serif;cursor:pointer;white-space:nowrap}
+.tab:hover{color:#374151}
+.tab.active{color:#111827;border-bottom-color:#0ea5e9;background:#fafafa}
+.dark .tab.active{background:#0f172a}
+.tab-close{font-size:14px;color:#9ca3af;cursor:pointer;margin-left:4px;line-height:1}
+.tab-close:hover{color:#ef4444}
+.editor-body{flex:1;display:flex;overflow:hidden}
+.line-num{width:44px;padding:16px 0;text-align:right;font:12px 'Fira Code',monospace;color:#9ca3af;overflow:hidden;user-select:none;border-right:1px solid #e5e7eb;background:rgba(0,0,0,.01)}
+.dark .line-num{background:rgba(0,0,0,.2)}
+textarea{flex:1;padding:16px;border:none;outline:none;font:14px/1.7 'Fira Code',monospace;background:transparent;resize:none;tab-size:2}
 
-/* ── CHAT ── */
-.ch{width:320px;display:flex;flex-direction:column;background:var(--s1);border-left:1px solid var(--bd);flex-shrink:0}
-.chh{height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;border-bottom:1px solid var(--bd)}
-.cht{display:flex;align-items:center;gap:7px}
-.chi{display:flex;align-items:center;justify-content:center;padding:4px;background:linear-gradient(135deg,var(--c1),var(--c2));border-radius:6px;box-shadow:0 3px 8px rgba(var(--c1r),.3)}
-.chi svg{width:11px;height:11px;fill:#fff}
-.cht span{font:800 9px var(--fd);color:var(--c1);letter-spacing:1px}
-.cs{display:flex;align-items:center;gap:4px}
-.sd{width:6px;height:6px;background:var(--ok);border-radius:50%;box-shadow:0 0 6px rgba(74,222,128,.6)}
-.cs span{font:600 8px var(--fu);color:var(--ok)}
-.cm{flex:1;overflow-y:auto;padding:10px}
-.msg{display:flex;gap:7px;margin-bottom:10px;animation:fi .3s}
-.av{width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
-.av svg{width:13px;height:13px;fill:#fff}
-.av.u{background:linear-gradient(135deg,#3B82F6,#1D4ED8)}
-.av.a{background:linear-gradient(135deg,var(--c1),var(--c2))}
-.bb{flex:1;padding:10px;background:var(--bg);border:1px solid var(--bd);border-radius:12px}
-.msg.u .bb{background:rgba(var(--c1r),.08);border-radius:12px 12px 4px 12px}
-.msg.a .bb{border-radius:12px 12px 12px 4px}
-.bbs{font:700 9px var(--fu);color:var(--c1);margin-bottom:4px}
-.bbt{font:12px/1.5 var(--fu);color:var(--tx);white-space:pre-wrap}
-.cty{display:none;align-items:center;gap:6px;padding:6px 10px}
-.spn{width:10px;height:10px;border:2px solid var(--bd);border-top-color:var(--c1);border-radius:50%;animation:sp .8s linear infinite}
-.cty span{font:italic 10px var(--fu);color:var(--tm)}
-.cin{display:flex;align-items:center;gap:5px;padding:8px;border-top:1px solid var(--bd)}
-.ciw{flex:1;display:flex;align-items:center;gap:6px;padding:8px 10px;background:var(--bg);border:1px solid var(--bd);border-radius:10px;transition:var(--tr)}
-.ciw:focus-within{border-color:var(--c1);box-shadow:0 0 0 2px rgba(var(--c1r),.1)}
-.ciw svg{width:14px;height:14px;fill:rgba(var(--c1r),.5);flex-shrink:0}
-.ciw input{flex:1;background:none;border:none;color:var(--tx);font:12px var(--fu);outline:none}
-.ciw input::placeholder{color:var(--td)}
-.snd{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--c1),var(--c2));border:none;border-radius:10px;color:#fff;cursor:pointer;box-shadow:0 4px 12px rgba(var(--c1r),.3);flex-shrink:0;transition:var(--tr)}
-.snd:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(var(--c1r),.4)}
-.snd svg{width:14px;height:14px;fill:#fff}
+/* приветственный экран */
+.welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#9ca3af}
+.welcome h1{font-size:28px;font-weight:700;color:#111827;letter-spacing:-.5px}
+.dark .welcome h1{color:#f9fafb}
+.welcome p{font-size:14px;max-width:360px;text-align:center;line-height:1.6}
+.welcome-cards{display:flex;gap:12px;margin-top:24px}
+.welcome-card{width:160px;padding:20px;border:1px solid #e5e7eb;border-radius:10px;text-align:center;background:#fff;cursor:pointer;transition:border-color .15s}
+.welcome-card:hover{border-color:#0ea5e9}
+.dark .welcome-card{background:#1f2937;border-color:#374151}
+.welcome-card .wc-icon{font-size:24px;margin-bottom:8px}
+.welcome-card .wc-title{font-size:13px;font-weight:600;color:#374151;margin-bottom:4px}
+.dark .welcome-card .wc-title{color:#e5e7eb}
+.welcome-card .wc-desc{font-size:11px;color:#9ca3af}
 
-/* ── SETTINGS ── */
-.st2{display:none;height:calc(100vh - 46px);background:var(--bg)}
-.ss{width:250px;display:flex;flex-direction:column;background:var(--s1);border-right:1px solid var(--bd)}
-.ssh{height:52px;display:flex;align-items:center;gap:10px;padding:0 12px}
-.bk{display:flex;align-items:center;justify-content:center;padding:7px;background:rgba(var(--c1r),.12);border:1px solid rgba(var(--c1r),.2);border-radius:var(--r1);color:var(--c1);cursor:pointer;transition:var(--tr)}
-.bk:hover{background:rgba(var(--c1r),.2);transform:translateX(-2px)}
-.bk svg{width:13px;height:13px;fill:currentColor}
-.ssh span{font:800 11px var(--fd);color:var(--c1);letter-spacing:2px}
-.ssm{flex:1;padding:4px 8px}
-.ssi{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;background:none;border:none;border-radius:var(--r1);cursor:pointer;margin-bottom:2px;transition:var(--tr)}
-.ssi:hover{background:rgba(var(--c1r),.06)}
-.ssi.on{background:rgba(var(--c1r),.1);outline:1px solid rgba(var(--c1r),.3)}
-.ssii{display:flex;align-items:center;justify-content:center;padding:4px;background:rgba(var(--c1r),.08);border-radius:6px;color:var(--tm);transition:var(--tr)}
-.ssi.on .ssii{background:rgba(var(--c1r),.15);color:var(--c1)}
-.ssii svg{width:13px;height:13px;fill:currentColor}
-.ssi span{font:500 12px var(--fu);color:var(--tm)}
-.ssi.on span{font-weight:600;color:var(--c1)}
-.sc{flex:1;overflow-y:auto;padding:28px}
-.sst{font:800 11px var(--fd);color:var(--c1);letter-spacing:1.5px;margin-bottom:14px}
-.lo{display:flex;align-items:center;gap:12px;padding:14px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r3);cursor:pointer;margin-bottom:8px;transition:var(--tr)}
-.lo:hover{border-color:rgba(var(--c1r),.3)}
-.lo.on{border-color:var(--c1);border-width:2px;background:rgba(var(--c1r),.04)}
-.lc{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(var(--c1r),.15),rgba(var(--c1r),.05));border-radius:var(--r2);font:800 13px var(--fd);color:var(--c1)}
-.li3{flex:1}
-.ln2{font:600 14px var(--fu);color:var(--tx)}
-.lnn{font:12px var(--fu);color:var(--tm)}
-.ck{width:20px;height:20px;display:flex;align-items:center;justify-content:center;background:var(--c1);border-radius:50%;opacity:0;transition:var(--tr)}
-.ck svg{width:11px;height:11px;fill:#fff}
-.lo.on .ck{opacity:1}
-.tho{display:flex;align-items:center;gap:12px;padding:14px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r3);cursor:pointer;margin-bottom:8px;transition:var(--tr)}
-.tho:hover{border-color:rgba(var(--c1r),.3)}
-.tho.on{border-color:var(--c1);border-width:2px;background:rgba(var(--c1r),.04)}
-.thp{width:38px;height:38px;border-radius:var(--r2);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center}
-.thd{width:12px;height:12px;border-radius:50%}
-.tho span{flex:1;font:500 13px var(--fu);color:var(--tx)}
-.stl{display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r1);margin-bottom:8px}
-.stll{font:12px var(--fu);color:var(--tx)}
-.stlv{font:600 12px var(--fu);color:var(--c1)}
-.stsw{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r1);margin-bottom:6px}
-.stsw label{font:12px var(--fu);color:var(--tx)}
-.tg{position:relative;width:38px;height:22px;background:var(--bd);border-radius:11px;cursor:pointer;transition:var(--tr)}
-.tg.on{background:var(--c1)}
-.tg::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:var(--td);border-radius:50%;transition:var(--tr)}
-.tg.on::after{transform:translateX(16px);background:#fff}
-.stsl{padding:12px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r1);margin-bottom:8px}
-.stsh{display:flex;justify-content:space-between;margin-bottom:6px}
-.stsh span{font:12px var(--fu);color:var(--tx)}
-.stsh .vl{font:600 12px var(--fu);color:var(--c1)}
-input[type=range]{width:100%;height:4px;background:var(--bd);border-radius:2px;outline:none;-webkit-appearance:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--c1);border-radius:50%;cursor:pointer;box-shadow:0 2px 6px rgba(var(--c1r),.3)}
-.svb{width:100%;padding:12px;background:linear-gradient(135deg,var(--c1),var(--c2));border:none;border-radius:var(--r1);color:#fff;font:700 13px var(--fu);cursor:pointer;box-shadow:0 4px 16px rgba(var(--c1r),.3);margin-top:16px;transition:var(--tr)}
-.svb:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(var(--c1r),.4)}
-.abl{display:flex;justify-content:center;margin-bottom:24px}
-.abc{padding:32px;background:radial-gradient(circle,rgba(var(--c1r),.12),transparent);border-radius:50%}
-.abn{padding:24px;background:linear-gradient(135deg,rgba(var(--c1r),.2),rgba(var(--c2),.1));border:1px solid rgba(var(--c1r),.2);border-radius:50%;color:rgba(var(--c1r),.6)}
-.abn svg{width:52px;height:52px;fill:currentColor}
-.abt{font:800 22px var(--fd);letter-spacing:3px;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;margin-bottom:24px}
+/* чат */
+.chat{width:300px;display:flex;flex-direction:column;background:#fff;border-left:1px solid #e5e7eb}
+.chat-head{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb}
+.chat-title{font-size:12px;font-weight:600;color:#374151}
+.dark .chat-title{color:#e5e7eb}
+.chat-status{display:flex;align-items:center;gap:5px;font-size:11px;color:#22c55e}
+.status-dot{width:6px;height:6px;background:#22c55e;border-radius:50%}
+.chat-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.msg{display:flex;gap:8px}
+.msg-ai .avatar,.msg-user .avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;color:#fff}
+.msg-ai .avatar{background:#0ea5e9}
+.msg-user .avatar{background:#6366f1}
+.bubble{padding:10px 12px;border-radius:10px;font-size:13px;line-height:1.5;max-width:85%}
+.msg-ai .bubble{background:#f3f4f6;border:1px solid #e5e7eb}
+.msg-user .bubble{background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.15);align-self:flex-end;border-radius:10px 10px 4px 10px}
+.bubble-name{font-size:10px;font-weight:700;color:#0ea5e9;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.chat-input-wrap{display:flex;gap:6px;padding:10px 12px;border-top:1px solid #e5e7eb}
+.chat-input{flex:1;padding:8px 12px;border:1px solid #e5e7eb;border-radius:8px;font:13px 'DM Sans',sans-serif;outline:none}
+.chat-input:focus{border-color:#0ea5e9}
+.send-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:#0ea5e9;border:none;border-radius:8px;color:#fff;cursor:pointer;flex-shrink:0}
+.send-btn:hover{background:#0284c7}
+.send-btn svg{width:14px;height:14px;fill:#fff}
 
-/* ── DIALOG ── */
-.dov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
-.dlg{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r3);padding:18px;min-width:280px;animation:fi .2s}
-.dlg h3{font:600 14px var(--fu);margin-bottom:10px;color:var(--tx)}
-.dlg input{width:100%;padding:8px 12px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r1);color:var(--tx);font:13px var(--fu);outline:none;margin-bottom:10px;transition:var(--tr)}
-.dlg input:focus{border-color:var(--c1)}
-.db{display:flex;justify-content:flex-end;gap:5px}
-.db button{padding:7px 14px;border:none;border-radius:var(--r1);font:600 12px var(--fu);cursor:pointer;transition:var(--tr)}
-.db .c{background:var(--s1);color:var(--tm);border:1px solid var(--bd)}
-.db .c:hover{background:var(--bd)}
-.db .p{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff}
-.db .p:hover{opacity:.9}
+/* настройки */
+.settings{display:none;height:calc(100vh - 40px);background:#fafafa}
+.settings-inner{display:flex;height:100%}
+.settings-nav{width:200px;background:#fff;border-right:1px solid #e5e7eb;padding:16px 0}
+.settings-nav button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 20px;background:none;border:none;text-align:left;font:14px 'DM Sans',sans-serif;color:#6b7280;cursor:pointer}
+.settings-nav button:hover{background:rgba(0,0,0,.03);color:#374151}
+.settings-nav button.active{color:#0ea5e9;background:rgba(14,165,233,.06);font-weight:600}
+.settings-nav button svg{width:16px;height:16px;fill:currentColor}
+.settings-content{flex:1;padding:32px;overflow-y:auto}
+.settings-content h3{font-size:18px;font-weight:700;margin-bottom:20px;color:#111827}
+.option-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid #f3f4f6}
+.option-row label{font-size:14px;color:#374151}
+.toggle{width:40px;height:22px;background:#d1d5db;border-radius:11px;position:relative;cursor:pointer;transition:background .15s}
+.toggle.on{background:#0ea5e9}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .15s}
+.toggle.on::after{transform:translateX(18px)}
+.select-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.select-opt{padding:10px 16px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s}
+.select-opt:hover{border-color:#9ca3af}
+.select-opt.chosen{border-color:#0ea5e9;background:rgba(14,165,233,.05);color:#0ea5e9;font-weight:600}
+.slider{width:200px;height:4px;border-radius:2px;outline:none;-webkit-appearance:none;background:#e5e7eb}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:#0ea5e9;border-radius:50%;cursor:pointer}
+.slider-val{font-size:13px;font-weight:600;color:#0ea5e9;min-width:30px;text-align:right}
 
-/* ── CONTEXT MENU ── */
-.cm2{position:fixed;background:var(--s2);border:1px solid var(--bd);border-radius:var(--r1);padding:5px;min-width:160px;box-shadow:0 4px 20px rgba(0,0,0,.4);z-index:1000;display:none}
-.cmi{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:5px;cursor:pointer;font:12px var(--fu);color:var(--tx);transition:var(--tr)}
-.cmi:hover{background:rgba(var(--c1r),.1);color:var(--c1)}
-.cmi.d{color:var(--er)}
-.cmi.d:hover{background:rgba(255,123,114,.1)}
-.cmi svg{width:13px;height:13px;fill:currentColor}
-.cmd{height:1px;background:var(--bd);margin:3px 5px}
+/* тосты */
+.toast{position:fixed;bottom:20px;right:20px;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:500;animation:fadeIn .2s;z-index:999}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── TOAST ── */
-.toast{position:fixed;bottom:16px;right:16px;padding:10px 18px;background:var(--c1);color:#fff;border-radius:8px;font:600 12px var(--fu);z-index:10000;animation:fi .3s}
+/* диалоги */
+.dialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:100}
+.dialog-box{background:#fff;border-radius:12px;padding:20px;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.dark .dialog-box{background:#1f2937}
+.dialog-box h4{font-size:15px;font-weight:600;margin-bottom:12px}
+.dialog-box input{width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:6px;font:13px 'DM Sans',sans-serif;outline:none;margin-bottom:14px}
+.dark .dialog-box input{background:#0f172a;border-color:#374151;color:#e5e7eb}
+.dialog-btns{display:flex;justify-content:flex-end;gap:6px}
+.dialog-btns button{padding:7px 14px;border-radius:6px;font:500 13px 'DM Sans',sans-serif;cursor:pointer;border:1px solid #e5e7eb;background:#fff;color:#374151}
+.dialog-btns button.primary{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
+.dialog-btns button.primary:hover{background:#0284c7}
+
+/* контекстное меню */
+.ctx-menu{position:fixed;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:4px;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:100;display:none}
+.dark .ctx-menu{background:#1f2937;border-color:#374151}
+.ctx-item{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:4px;font-size:13px;cursor:pointer;color:#374151}
+.ctx-item:hover{background:rgba(0,0,0,.04)}
+.dark .ctx-item{color:#d1d5db}
+.dark .ctx-item:hover{background:rgba(255,255,255,.05)}
+.ctx-item.danger{color:#ef4444}
+.ctx-item svg{width:14px;height:14px;fill:currentColor}
+.ctx-sep{height:1px;background:#e5e7eb;margin:4px 8px}
+.dark .ctx-sep{background:#374151}
 </style>
 </head>
-<body>
-<div class="tb">
-<div class="tb-l">
-<div class="logo"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><b>AQUA CODE</b></div>
-<button class="mb" data-i18n="menu_file">Файл</button>
-<button class="mb" data-i18n="menu_edit">Правка</button>
-<button class="mb" data-i18n="menu_view">Вид</button>
-<button class="mb" data-i18n="menu_run">Запуск</button>
-<button class="mb" data-i18n="menu_help">Справка</button>
-</div>
-<div class="tb-r">
-<button class="lb" id="langBtn"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg><span id="langLbl">RU</span></button>
-<div class="vb">V1.0</div>
-</div>
-</div>
-<div class="mn" id="mainL">
-<div class="ab"><div class="ab-g">
-<button class="ab-i on" data-p="exp"><svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg></button>
-<button class="ab-i" data-p="ai"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></button>
-</div><div class="ab-g">
-<button class="ab-i" data-p="set"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></button>
-</div></div>
-<div class="sb" id="sidebar">
-<div class="sb-h"><div class="sb-t"><div class="sb-ic"><svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg></div><span data-i18n="explorer">ПРОВОДНИК</span></div>
-<div class="sb-a"><button class="sba" id="nfb"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V9h2v3h3v2z"/></svg></button><button class="sba" id="nfi"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></button></div>
-</div>
-<div class="sb-s"><input type="text" id="sI" data-i18n-placeholder="search" placeholder="Поиск файлов..."></div>
-<div class="ft" id="fT"></div>
-<div class="sb-f">
-<button class="sbf" id="fnf"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V9h2v3h3v2z"/></svg></button>
-<button class="sbf" id="fni2"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></button>
-<button class="sbf" id="ref"><svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-8 3.58-8 8s3.58 8 8 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg></button>
+<body class="dark">
+
+<!-- TOPBAR -->
+<div class="topbar">
+<div class="topbar-left">
+<span class="app-name">AquaCode</span>
+<div class="topbar-menu">
+<button data-i18n="m_file">Файл</button>
+<button data-i18n="m_edit">Правка</button>
+<button data-i18n="m_view">Вид</button>
+<button data-i18n="m_run">Запуск</button>
+<button data-i18n="m_help">Справка</button>
 </div>
 </div>
-<div class="ed" id="edA">
-<div class="et" id="eT"></div>
-<div class="eb" id="eB" style="display:none"><div class="ln" id="lN"></div><textarea class="ce" id="cE" spellcheck="false"></textarea><div class="es" id="eS"><span class="esn" id="eSN"></span></div></div>
-<div class="wc" id="wS">
-<div class="wl"><div class="wli"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div></div>
-<h1 class="wt" data-i18n="welcome_title">AQUA CODE V1</h1>
-<p class="ws2" data-i18n="welcome_subtitle">AI-среда разработки</p>
-<div class="wcr">
-<div class="wcd"><div class="wcd-i"><svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg></div><span data-i18n="welcome_open">Открыть папку</span><small data-i18n="welcome_open_desc">Выбрать на диске</small></div>
-<div class="wcd"><div class="wcd-i"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><span data-i18n="welcome_ai">AI-ассистент</span><small data-i18n="welcome_ai_desc">Чат с Aqua Code</small></div>
-<div class="wcd"><div class="wcd-i"><svg viewBox="0 0 24 24"><path d="M20 5H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2zm3 3h-2v-2h2v2zm0-3h-2V8h2v2z"/></svg></div><span data-i18n="welcome_shortcuts">Горячие клавиши</span><small data-i18n="welcome_shortcuts_desc">Ctrl+S сохранить</small></div>
-</div></div></div>
-<div class="ch" id="chP">
-<div class="chh"><div class="cht"><div class="chi"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><span data-i18n="ai_title">AQUA CODE V1</span></div><div class="cs"><div class="sd"></div><span data-i18n="ai_online">Онлайн</span></div></div>
-<div class="cm" id="cMs"></div>
-<div class="cty" id="cTy"><div class="spn"></div><span data-i18n="ai_thinking">Думаю...</span></div>
-<div class="cin"><div class="ciw"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><input type="text" id="cI" data-i18n-placeholder="ai_placeholder" placeholder="Спросите Aqua Code V1..."></div><button class="snd" id="sB"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
-</div></div>
-<div class="st2" id="setScr"><div class="ss"><div class="ssh"><button class="bk" id="bK"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button><span data-i18n="settings">НАСТРОЙКИ</span></div>
-<div class="ssm">
-<button class="ssi on" data-sec="lang"><div class="ssii"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div><span data-i18n="language_label">Язык</span></button>
-<button class="ssi" data-sec="look"><div class="ssii"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-1 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div><span data-i18n="settings_appearance">Внешний вид</span></button>
-<button class="ssi" data-sec="ai2"><div class="ssii"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><span data-i18n="settings_ai">Aqua Code V1</span></button>
-<button class="ssi" data-sec="edit"><div class="ssii"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div><span data-i18n="settings_editor">Редактор</span></button>
-<button class="ssi" data-sec="about"><div class="ssii"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span data-i18n="settings_about">О приложении</span></button>
-</div></div><div class="sc" id="sC"></div></div>
-<div class="dov" id="dO"><div class="dlg"><h3 id="dT"></h3><input type="text" id="dI"><div class="db"><button class="c" id="dC" data-i18n="cancel">Отмена</button><button class="p" id="dOk" data-i18n="create">Создать</button></div></div></div>
-<div class="cm2" id="cm2">
-<div class="cmi" data-a="nf"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V9h2v3h3v2z"/></svg><span data-i18n="new_folder">Новая папка</span></div>
-<div class="cmi" data-a="nfi"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg><span data-i18n="new_file">Новый файл</span></div>
-<div class="cmd"></div>
-<div class="cmi" data-a="ren"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg><span data-i18n="rename">Переименовать</span></div>
-<div class="cmi" data-a="cp"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg><span data-i18n="copy_path">Копировать путь</span></div>
-<div class="cmd"></div>
-<div class="cmi d" data-a="del"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg><span data-i18n="delete">Удалить</span></div>
+<div class="topbar-right">
+<button class="lang-btn" id="langBtn">RU</button>
+<span class="ver">v1.0</span>
+</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ACTIVITY -->
+<div class="activity">
+<div class="activity-top">
+<button class="active" data-panel="files" title="Файлы"><svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg></button>
+<button data-panel="chat" title="Чат"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></button>
+</div>
+<div class="activity-bot">
+<button data-panel="settings" title="Настройки"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></button>
+</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-head">
+<span class="sidebar-title" data-i18n="s_explorer">Проводник</span>
+<div class="sidebar-btns">
+<button id="newFolderBtn" title="Новая папка"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V9h2v3h3v2z"/></svg></button>
+<button id="newFileBtn" title="Новый файл"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg></button>
+</div>
+</div>
+<input type="text" class="search-box" id="searchInput" placeholder="Поиск файлов...">
+<div class="files" id="fileTree"></div>
+</div>
+
+<!-- EDITOR -->
+<div class="editor" id="editorArea">
+<div class="tabs" id="tabs"></div>
+<div class="editor-body" id="editorBody" style="display:none">
+<div class="line-num" id="lineNums"></div>
+<textarea id="codeEditor" spellcheck="false"></textarea>
+</div>
+<div class="welcome" id="welcomeScreen">
+<h1>AquaCode</h1>
+<p>Редактор кода с AI-помощником. Откройте файл в проводнике слева, чтобы начать.</p>
+<div class="welcome-cards">
+<div class="welcome-card" onclick="document.getElementById('newFileBtn').click()"><div class="wc-icon">+</div><div class="wc-title" data-i18n="w_new">Новый файл</div><div class="wc-desc" data-i18n="w_new_desc">Создать пустой</div></div>
+<div class="welcome-card" onclick="document.getElementById('newFolderBtn').click()"><div class="wc-icon">/</div><div class="wc-title" data-i18n="w_folder">Новая папка</div><div class="wc-desc" data-i18n="w_folder_desc">Создать папку</div></div>
+<div class="welcome-card" onclick="togglePanel('chat')"><div class="wc-icon">~</div><div class="wc-title" data-i18n="w_chat">AI-чат</div><div class="wc-desc" data-i18n="w_chat_desc">Задать вопрос</div></div>
+</div>
+</div>
+</div>
+
+<!-- CHAT -->
+<div class="chat" id="chatPanel">
+<div class="chat-head">
+<span class="chat-title" data-i18n="ch_title">AquaCode AI</span>
+<div class="chat-status"><div class="status-dot"></div> <span data-i18n="ch_online">Онлайн</span></div>
+</div>
+<div class="chat-messages" id="chatMessages"></div>
+<div class="chat-input-wrap">
+<input type="text" class="chat-input" id="chatInput" placeholder="Спросите что угодно...">
+<button class="send-btn" id="sendBtn"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+</div>
+</div>
+
+</div>
+
+<!-- SETTINGS -->
+<div class="settings" id="settingsScreen">
+<div class="settings-inner">
+<div class="settings-nav">
+<button class="active" data-section="lang"><svg viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-13zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg> <span data-i18n="s_lang">Язык</span></button>
+<button data-section="theme"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-1 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"/></svg> <span data-i18n="s_theme">Тема</span></button>
+<button data-section="ai"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg> <span data-i18n="s_ai">AI</span></button>
+<button data-section="editor"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg> <span data-i18n="s_editor">Редактор</span></button>
+<button data-section="about"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> <span data-i18n="s_about">О приложении</span></button>
+</div>
+<div class="settings-content" id="settingsContent"></div>
+</div>
+</div>
+
+<!-- DIALOG -->
+<div class="dialog-overlay" id="dialogOverlay">
+<div class="dialog-box">
+<h4 id="dialogTitle"></h4>
+<input type="text" id="dialogInput" placeholder="">
+<div class="dialog-btns">
+<button onclick="closeDialog()" data-i18n="d_cancel">Отмена</button>
+<button class="primary" id="dialogConfirm" data-i18n="d_create">Создать</button>
+</div>
+</div>
+</div>
+
+<!-- CTX MENU -->
+<div class="ctx-menu" id="ctxMenu">
+<div class="ctx-item" data-action="newFolder"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V9h2v3h3v2z"/></svg> <span data-i18n="c_newFolder">Новая папка</span></div>
+<div class="ctx-item" data-action="newFile"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg> <span data-i18n="c_newFile">Новый файл</span></div>
+<div class="ctx-sep"></div>
+<div class="ctx-item" data-action="rename"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"/></svg> <span data-i18n="c_rename">Переименовать</span></div>
+<div class="ctx-item" data-action="copyPath"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2z"/></svg> <span data-i18n="c_copyPath">Копировать путь</span></div>
+<div class="ctx-sep"></div>
+<div class="ctx-item danger" data-action="delete"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg> <span data-i18n="c_delete">Удалить</span></div>
 </div>
 
 <script>
-const STR={ru:{menu_file:'Файл',menu_edit:'Правка',menu_view:'Вид',menu_run:'Запуск',menu_help:'Справка',explorer:'ПРОВОДНИК',search:'Поиск файлов...',settings:'НАСТРОЙКИ',new_folder:'Новая папка',new_file:'Новый файл',rename:'Переименовать',delete:'Удалить',cancel:'Отмена',create:'Создать',copy_path:'Копировать путь',folder_name:'имя_папки',file_name:'file.js',new_name:'Новое имя',ai_title:'AQUA CODE V1',ai_online:'Онлайн',ai_placeholder:'Спросите Aqua Code V1...',ai_thinking:'Думаю...',ai_hello:'Привет! Я Aqua Code V1. Чем могу помочь?',welcome_title:'AQUA CODE V1',welcome_subtitle:'AI-среда разработки',welcome_open:'Открыть папку',welcome_open_desc:'Выбрать на диске',welcome_ai:'AI-ассистент',welcome_ai_desc:'Чат с Aqua Code',welcome_shortcuts:'Горячие клавиши',welcome_shortcuts_desc:'Ctrl+S сохранить',settings_appearance:'Внешний вид',settings_ai:'Aqua Code V1',settings_editor:'Редактор',settings_about:'О приложении',settings_theme:'Тема',settings_dark:'Космос с неоновыми акцентами',settings_aqua:'Океанский бриз',settings_white:'Чистый минимализм',settings_font:'Размер шрифта',settings_tab_size:'Табуляция',settings_word_wrap:'Перенос строк',settings_line_numbers:'Номера строк',settings_auto_save:'Автосохранение',settings_model:'Модель',settings_temperature:'Температура',settings_max_tokens:'Макс. токенов',settings_context:'Контекст',settings_features:'Функции',settings_completion:'Автодополнение',settings_errors:'Ошибки',settings_refactor:'Рефакторинг',settings_docs:'Документация',save:'Сохранить',saved_ok:'Сохранено ✓',language_label:'Язык',language_ru:'Русский',language_en:'Английский'},en:{menu_file:'File',menu_edit:'Edit',menu_view:'View',menu_run:'Run',menu_help:'Help',explorer:'EXPLORER',search:'Search files...',settings:'SETTINGS',new_folder:'New Folder',new_file:'New File',rename:'Rename',delete:'Delete',cancel:'Cancel',create:'Create',copy_path:'Copy Path',folder_name:'folder_name',file_name:'file.js',new_name:'New name',ai_title:'AQUA CODE V1',ai_online:'Online',ai_placeholder:'Ask Aqua Code V1...',ai_thinking:'Thinking...',ai_hello:"Hello! I'm Aqua Code V1.",welcome_title:'AQUA CODE V1',welcome_subtitle:'AI-Powered IDE',welcome_open:'Open Folder',welcome_open_desc:'Browse disk',welcome_ai:'AI Assistant',welcome_ai_desc:'Chat with Aqua Code',welcome_shortcuts:'Shortcuts',welcome_shortcuts_desc:'Ctrl+S to save',settings_appearance:'Appearance',settings_ai:'Aqua Code V1',settings_editor:'Editor',settings_about:'About',settings_theme:'Theme',settings_dark:'Deep space neon',settings_aqua:'Ocean breeze',settings_white:'Clean minimal',settings_font:'Font Size',settings_tab_size:'Tab Size',settings_word_wrap:'Word Wrap',settings_line_numbers:'Line Numbers',settings_auto_save:'Auto Save',settings_model:'Model',settings_temperature:'Temperature',settings_max_tokens:'Max Tokens',settings_context:'Context',settings_features:'Features',settings_completion:'Completion',settings_errors:'Errors',settings_refactor:'Refactoring',settings_docs:'Documentation',save:'Save',saved_ok:'Saved ✓',language_label:'Language',language_ru:'Russian',language_en:'English'}};
-let locale='ru',theme='dark';
-const t=k=>STR[locale]?.[k]||STR.ru[k]||k;
-const setLocale=l=>{locale=l;localStorage.setItem('a-l',l);updUI()};
-const setTheme=th=>{theme=th;document.documentElement.className='theme-'+th;localStorage.setItem('a-t',th)};
-const gs=k=>{const v=localStorage.getItem('a-'+k);if(v===null)return{fs:14,ts:2,ww:true,ln:true,as:true,at:0.7,amt:4096,acc:true,aee:true,acr:true,aad:false}[k]??'';if(v==='true')return true;if(v==='false')return false;const n=Number(v);return isNaN(n)?v:n};
-const ss2=(k,v)=>localStorage.setItem('a-'+k,String(v));
-const updUI=()=>{document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));document.querySelectorAll('[data-i18n-placeholder]').forEach(e=>e.placeholder=t(e.dataset.i18nPlaceholder))};
+// ═══════════════════════════════════════════════
+// i18n
+// ═══════════════════════════════════════════════
+const LANG={
+  ru:{m_file:'Файл',m_edit:'Правка',m_view:'Вид',m_run:'Запуск',m_help:'Справка',s_explorer:'Проводник',s_search:'Поиск файлов...',s_settings:'Настройки',s_lang:'Язык',s_theme:'Тема',s_ai:'AI',s_editor:'Редактор',s_about:'О приложении',ch_title:'AquaCode AI',ch_online:'Онлайн',ch_placeholder:'Спросите что угодно...',ch_think:'Думаю...',ch_hello:'Привет! Чем могу помочь?',w_new:'Новый файл',w_new_desc:'Создать пустой',w_folder:'Новая папка',w_folder_desc:'Создать папку',w_chat:'AI-чат',w_chat_desc:'Задать вопрос',c_newFolder:'Новая папка',c_newFile:'Новый файл',c_rename:'Переименовать',c_copyPath:'Копировать путь',c_delete:'Удалить',d_cancel:'Отмена',d_create:'Создать',d_rename:'Переименовать',d_folder_name:'имя_папки',d_file_name:'file.js',d_new_name:'Новое имя',t_saved:'Сохранено ✓',s_dark:'Тёмная',s_light:'Светлая',s_mono:'Космос'},
+  en:{m_file:'File',m_edit:'Edit',m_view:'View',m_run:'Run',m_help:'Help',s_explorer:'Explorer',s_search:'Search files...',s_settings:'Settings',s_lang:'Language',s_theme:'Theme',s_ai:'AI',s_editor:'Editor',s_about:'About',ch_title:'AquaCode AI',ch_online:'Online',ch_placeholder:'Ask anything...',ch_think:'Thinking...',ch_hello:'Hello! How can I help you?',w_new:'New file',w_new_desc:'Create empty',w_folder:'New folder',w_folder_desc:'Create folder',w_chat:'AI Chat',w_chat_desc:'Ask a question',c_newFolder:'New folder',c_newFile:'New file',c_rename:'Rename',c_copyPath:'Copy path',c_delete:'Delete',d_cancel:'Cancel',d_create:'Create',d_rename:'Rename',d_folder_name:'folder_name',d_file_name:'file.js',d_new_name:'New name',t_saved:'Saved ✓',s_dark:'Dark',s_light:'Light',s_mono:'Space'}
+};
+let locale='ru';
+const t=k=>LANG[locale]?.[k]||LANG.ru[k]||k;
+const updLang=()=>{document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n))};
 
-let FT=[
-  {name:'src',is_dir:true,path:'/src',children:[
-    {name:'app.js',is_dir:false,path:'/src/app.js',content:'// Main application\nconsole.log("Hello from Aqua Code!");\n\nfunction greet(name) {\n  return `Hello, ${name}!`;\n}\n\ngreet("World");'},
-    {name:'index.html',is_dir:false,path:'/src/index.html',content:'<!DOCTYPE html>\n<html>\n<head><title>My App</title></head>\n<body>\n  <h1>Hello World</h1>\n</body>\n</html>'},
-    {name:'styles.css',is_dir:false,path:'/src/styles.css',content:'body {\n  margin: 0;\n  padding: 20px;\n  font-family: sans-serif;\n  background: #1a1a2e;\n  color: #eee;\n}\n\nh1 {\n  color: #00D4FF;\n}'},
-    {name:'utils',is_dir:true,path:'/src/utils',children:[
-      {name:'helpers.js',is_dir:false,path:'/src/utils/helpers.js',content:'export const formatDate = (d) => d.toISOString();'},
-      {name:'api.js',is_dir:false,path:'/src/utils/api.js',content:'export const fetchData = async (url) => {\n  return await window.fetch(url);\n};'}
+// ═══════════════════════════════════════════════
+// файлы
+// ═══════════════════════════════════════════════
+let files=[
+  {n:'src',d:true,p:'/src',c:[
+    {n:'app.js',d:false,p:'/src/app.js',v:'// Точка входа\nconsole.log("Привет из AquaCode!");'},
+    {n:'index.html',d:false,p:'/src/index.html',v:'<!DOCTYPE html>\n<html>\n<head><title>App</title></head>\n<body>\n  <h1>Hello</h1>\n</body>\n</html>'},
+    {n:'style.css',d:false,p:'/src/style.css',v:'body {\n  margin: 0;\n  padding: 20px;\n  font-family: sans-serif;\n}'},
+    {n:'utils',d:true,p:'/src/utils',c:[
+      {n:'helpers.js',d:false,p:'/src/utils/helpers.js',v:'export const sum = (a, b) => a + b;'},
+      {n:'api.js',d:false,p:'/src/utils/api.js',v:'export async function getData(url) {\n  const res = await fetch(url);\n  return res.json();\n}'}
     ]}
   ]},
-  {name:'package.json',is_dir:false,path:'/package.json',content:'{\n  "name": "my-project",\n  "version": "1.0.0"\n}'},
-  {name:'README.md',is_dir:false,path:'/README.md',content:'# My Project\n\nBuilt with **Aqua Code V1**.'}
+  {n:'package.json',d:false,p:'/package.json',v:'{\n  "name": "my-project",\n  "version": "1.0.0"\n}'},
+  {n:'README.md',d:false,p:'/README.md',v:'# My Project\n\nBuilt with AquaCode.'}
 ];
-let selNode=null,exp=new Set(['/src']),openF=[],actF=null,cache=new Map();
-const iq=()=>document.getElementById('sI')?.value||'';
-function ic(n){if(n.is_dir)return'dir';return n.name.split('.').pop()||'def'}
-function fIcon(n){
-  if(n.is_dir)return`<svg viewBox="0 0 24 24"><path d="${exp.has(n.path)?'M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z':'M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z'}"/></svg>`;
-  const e=n.name.split('.').pop();const m={js:'M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm3 3v2h4V8H8zm0 4v2h10v-2H8zm0 4v1h6v-1H8z',html:'M12 18.175l-6.175-1.65V7.475L12 5.825l6.175 1.65v9.05L12 18.175zM5.825 15.925L12 17.575l6.175-1.65V8.425L12 6.775 5.825 8.425v7.5z',css:'M5 3l-.65 3.34h13.59L17.5 8.5H3.92l-.66 3.33h13.57l-.76 3.81-5.48 1.81-4.75-1.81.33-1.64H2.85l-.79 4 7.85 3 9.05-3 1.2-6.03.24-1.21L21.94 3H5z',json:'M5 3h2v2H5v5a2 2 0 01-2 2 2 2 0 012 2v5h2v-5a2 2 0 00-2-2 2 2 0 002-2V3zm6 0v2h2v2h-2v2a2 2 0 00-2 2v2h2v-2h2v2h-2v2a2 2 0 01-2 2v3h2v-3h2v3h2v-3a2 2 0 00-2-2 2 2 0 002-2v-2h-2v-2h2V9h-2V7h2V5h-2V3h-2z',md:'M3 5v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2zm4 3v2h4V8H7zm0 4v2h10v-2H7zm0 4v1h6v-1H7z'};
-  return`<svg viewBox="0 0 24 24"><path d="${m[e]||'M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z'}"/></svg>`;
+let openFiles=[],activeFile=null,cache=new Map(),selected=null,expanded=new Set(['/src']),ctxNode=null;
+const ext=n=>{if(n.d)return'folder';return n.n.split('.').pop()||'default'};
+
+function renderTree(nodes,depth=0,q=''){
+  if(!nodes)return'';
+  const sq=q.toLowerCase();
+  return[...nodes].sort((a,b)=>{if(a.d&&!b.d)return-1;if(!a.d&&b.d)return 1;return a.n.localeCompare(b.n)}).filter(n=>{if(!sq)return true;if(n.n.toLowerCase().includes(sq))return true;if(n.d)return n.c?.some(c=>renderTree([c],0,sq)!=='');return false}).map(n=>{
+    const open=expanded.has(n.p),sel=selected?.p===n.p;
+    let h=`<div class="file-item${sel?' selected':''}" data-p="${n.p}" data-d="${n.d}" style="padding-left:${8+depth*14}px">`;
+    if(n.d)h+=`<span class="arrow${open?' open':''}">▶</span>`;
+    else h+=`<span style="width:16px"></span>`;
+    h+=`<span class="icon ${ext(n)}">${n.d?'📁':n.n.split('.').pop().toUpperCase()}</span>`;
+    h+=`<span>${n.n}</span></div>`;
+    if(n.d&&open&&n.c)h+=`<div class="file-children">${renderTree(n.c,depth+1,sq)}</div>`;
+    return h;
+  }).join('');
 }
-function rTree(nodes,d=0,q=''){if(!nodes)return'';const sq=q.toLowerCase();return[...nodes].sort((a,b)=>{if(a.is_dir&&!b.is_dir)return-1;if(!a.is_dir&&b.is_dir)return 1;return a.name.localeCompare(b.name)}).filter(n=>{if(!sq)return true;if(n.name.toLowerCase().includes(sq))return true;if(n.is_dir)return n.children?.some(c=>rTree([c],0,sq)!=='');return false}).map(n=>{const ex=exp.has(n.path),sel=selNode?.path===n.path;let h=`<div class="fn${sel?' sel':''}" data-p="${n.path}" data-d="${n.is_dir}" style="padding-left:${6+d*16}px"><span class="fa ${n.is_dir?(ex?'ex':''):'hi'}"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span><span class="fi ${ic(n)}">${fIcon(n)}</span><span class="fn-n">${n.name}</span></div>`;if(n.is_dir&&ex&&n.children)h+=rTree(n.children,d+1,sq);return h}).join('')}
-function rFT(){document.getElementById('fT').innerHTML=rTree(FT,0,iq())}
-function findN(p,nodes){for(const n of nodes){if(n.path===p)return n;if(n.children){const f=findN(p,n.children);if(f)return f}}return null}
-function findParent(p){const parts=p.split('/').filter(Boolean);parts.pop();return parts.length?'/'+parts.join('/'):''}
+function renderFiles(){document.getElementById('fileTree').innerHTML=renderTree(files,0,document.getElementById('searchInput').value)}
+function findNode(p,nodes){for(const n of nodes){if(n.p===p)return n;if(n.c){const f=findNode(p,n.c);if(f)return f}}return null}
+function parentPath(p){const parts=p.split('/').filter(Boolean);parts.pop();return parts.length?'/'+parts.join('/'):''}
 
-function rTabs(){document.getElementById('eT').innerHTML=openF.map((f,i)=>`<button class="tb2${f.path===actF?.path?' on':''}" data-i="${i}"><span style="color:${f.is_dir?'#FFCA28':'#00D4FF'};font-size:10px">●</span> ${f.name}<span class="tbc" data-c="${i}">×</span></button>`).join('')}
-function rLN(){const ed=document.getElementById('cE'),ln=document.getElementById('lN');if(!ed||!ln)return;ln.innerHTML=Array.from({length:ed.value.split('\n').length},(_,i)=>`<div class="li2">${i+1}</div>`).join('')}
-function openFile(n){if(n.is_dir)return;let c=cache.get(n.path);if(c===undefined){c=n.content||'// '+n.name;cache.set(n.path,c)}if(!openF.find(f=>f.path===n.path))openF.push(n);actF=n;document.getElementById('eB').style.display='flex';document.getElementById('wS').style.display='none';document.getElementById('cE').value=c;document.getElementById('eS').style.display='flex';document.getElementById('eSN').textContent=n.name;rTabs();rLN()}
-function closeFile(i){const f=openF[i];openF.splice(i,1);if(actF?.path===f?.path){actF=openF[Math.min(i,openF.length-1)]||null;if(actF){document.getElementById('cE').value=cache.get(actF.path)||'';rLN();document.getElementById('eSN').textContent=actF.name}}if(!openF.length){actF=null;document.getElementById('eB').style.display='none';document.getElementById('wS').style.display='flex';document.getElementById('eS').style.display='none'}rTabs()}
+// ═══════════════════════════════════════════════
+// редактор
+// ═══════════════════════════════════════════════
+function renderTabs(){document.getElementById('tabs').innerHTML=openFiles.map((f,i)=>`<button class="tab${f.p===activeFile?.p?' active':''}" data-i="${i}">${f.n}<span class="tab-close" data-c="${i}">×</span></button>`).join('')}
+function renderLines(){const ed=document.getElementById('codeEditor'),ln=document.getElementById('lineNums');if(!ed||!ln)return;ln.innerHTML=Array.from({length:ed.value.split('\n').length},(_,i)=>`<div>${i+1}</div>`).join('')}
+function openFile(n){if(n.d)return;let c=cache.get(n.p);if(c===undefined){c=n.v||'// '+n.n;cache.set(n.p,c)}if(!openFiles.find(f=>f.p===n.p))openFiles.push(n);activeFile=n;document.getElementById('editorBody').style.display='flex';document.getElementById('welcomeScreen').style.display='none';document.getElementById('codeEditor').value=c;renderTabs();renderLines()}
+function closeTab(i){const f=openFiles[i];openFiles.splice(i,1);if(activeFile?.p===f?.p){activeFile=openFiles[Math.min(i,openFiles.length-1)]||null;if(activeFile){document.getElementById('codeEditor').value=cache.get(activeFile.p)||'';renderLines()}}if(!openFiles.length){activeFile=null;document.getElementById('editorBody').style.display='none';document.getElementById('welcomeScreen').style.display='flex'}renderTabs()}
 
-let msgs=[{text:t('ai_hello'),u:false}];
-function genR(i){const l=i.toLowerCase();if(l.includes('hello')||l.includes('привет'))return t('ai_hello');return locale==='ru'?`Понял: "${i}". Уточните!`:`Got it: "${i}". What specifically?`}
-function rChat(){document.getElementById('cMs').innerHTML=msgs.map(m=>`<div class="msg ${m.u?'u':'a'}"><div class="av ${m.u?'u':'a'}"><svg viewBox="0 0 24 24"><path d="${m.u?'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z':'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'}"/></svg></div><div class="bb"><div class="bbs">${m.u?'You':'Aqua Code V1'}</div><div class="bbt">${m.text.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div></div></div>`).join('');document.getElementById('cMs').scrollTop=99999}
+// ═══════════════════════════════════════════════
+// чат
+// ═══════════════════════════════════════════════
+let msgs=[{text:t('ch_hello'),ai:true}];
+function genReply(inp){const l=inp.toLowerCase();if(l.includes('привет')||l.includes('hello')||l.includes('hi'))return t('ch_hello');return locale==='ru'?`Понял: "${inp}". Уточните задачу.`:`Got it: "${inp}". What specifically?`}
+function renderChat(){document.getElementById('chatMessages').innerHTML=msgs.map(m=>`<div class="msg ${m.ai?'msg-ai':'msg-user'}"><div class="avatar">${m.ai?'AI':'Вы'}</div><div class="bubble">${m.ai?'<div class="bubble-name">AquaCode</div>':''}${m.text.replace(/</g,'&lt;')}</div></div>`).join('');document.getElementById('chatMessages').scrollTop=9999}
+function sendMsg(){const inp=document.getElementById('chatInput');if(!inp.value.trim())return;const txt=inp.value.trim();inp.value='';msgs.push({text:txt,ai:false});renderChat();setTimeout(()=>{msgs.push({text:genReply(txt),ai:true});renderChat()},800)}
 
-let curSec='lang';
-function rSet(){
-  document.querySelectorAll('.ssi').forEach(i=>i.classList.toggle('on',i.dataset.sec===curSec));
-  const c=document.getElementById('sC');
-  if(curSec==='lang'){c.innerHTML=`<div class="sst">${t('language_label')}</div><div class="lo${locale==='ru'?' on':''}" data-l="ru"><div class="lc">RU</div><div class="li3"><div class="ln2">${locale==='ru'?'Русский':'Russian'}</div><div class="lnn">Русский</div></div><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div></div><div class="lo${locale==='en'?' on':''}" data-l="en"><div class="lc">EN</div><div class="li3"><div class="ln2">English</div><div class="lnn">${locale==='ru'?'Английский':'English'}</div></div><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div></div>`;c.querySelectorAll('.lo').forEach(o=>o.onclick=()=>{setLocale(o.dataset.l);document.getElementById('langLbl').textContent=o.dataset.l.toUpperCase();rSet()})}
-  else if(curSec==='look'){const cur=theme;const th=[{id:'dark',n:t('settings_dark'),bg:'#010409',ac:'#00D4FF'},{id:'aqua',n:t('settings_aqua'),bg:'#F0FDFF',ac:'#00838F'},{id:'white',n:t('settings_white'),bg:'#FFFFFF',ac:'#00D4FF'}];c.innerHTML=`<div class="sst">${t('settings_theme')}</div>${th.map(x=>`<div class="tho${cur===x.id?' on':''}" data-t="${x.id}"><div class="thp" style="background:${x.bg}"><div class="thd" style="background:${x.ac}"></div></div><span>${x.n}</span><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div></div>`).join('')}`;c.querySelectorAll('.tho').forEach(o=>o.onclick=()=>{setTheme(o.dataset.t);rSet()})}
-  else if(curSec==='ai2'){c.innerHTML=`<div class="sst">${t('settings_ai')}</div><div class="stl"><span class="stll">${t('settings_model')}</span><span class="stlv">Aqua Code V1</span></div><div class="stsl"><div class="stsh"><span>${t('settings_temperature')}</span><span class="vl" id="tV">${gs('at').toFixed(1)}</span></div><input type="range" min="0" max="2" step="0.1" value="${gs('at')}" id="tR"></div><div class="stl"><span class="stll">${t('settings_max_tokens')}</span><span class="stlv">${gs('amt')}</span></div><div class="stl"><span class="stll">${t('settings_context')}</span><span class="stlv">128K</span></div><div class="sst" style="margin-top:16px">${t('settings_features')}</div><div class="stsw"><label>${t('settings_completion')}</label><div class="tg${gs('acc')?' on':''}" data-k="acc"></div></div><div class="stsw"><label>${t('settings_errors')}</label><div class="tg${gs('aee')?' on':''}" data-k="aee"></div></div><div class="stsw"><label>${t('settings_refactor')}</label><div class="tg${gs('acr')?' on':''}" data-k="acr"></div></div><div class="stsw"><label>${t('settings_docs')}</label><div class="tg${gs('aad')?' on':''}" data-k="aad"></div></div><button class="svb" id="svB">${t('save')}</button>`;document.getElementById('tR').oninput=e=>{document.getElementById('tV').textContent=parseFloat(e.target.value).toFixed(1);ss2('at',parseFloat(e.target.value))};c.querySelectorAll('.tg').forEach(tg=>tg.onclick=()=>{tg.classList.toggle('on');ss2(tg.dataset.k,tg.classList.contains('on'))});document.getElementById('svB').onclick=toast}
-  else if(curSec==='edit'){c.innerHTML=`<div class="sst">${t('settings_editor')}</div><div class="stsl"><div class="stsh"><span>${t('settings_font')}</span><span class="vl" id="fV">${gs('fs')}</span></div><input type="range" min="10" max="24" value="${gs('fs')}" id="fR"></div><div class="stsl"><div class="stsh"><span>${t('settings_tab_size')}</span><span class="vl" id="tS">${gs('ts')}</span></div><input type="range" min="2" max="8" value="${gs('ts')}" id="tSR"></div><div class="sst" style="margin-top:16px">${t('settings_features')}</div><div class="stsw"><label>${t('settings_word_wrap')}</label><div class="tg${gs('ww')?' on':''}" data-k="ww"></div></div><div class="stsw"><label>${t('settings_line_numbers')}</label><div class="tg${gs('ln')?' on':''}" data-k="ln"></div></div><div class="stsw"><label>${t('settings_auto_save')}</label><div class="tg${gs('as')?' on':''}" data-k="as"></div></div><button class="svb" id="svB">${t('save')}</button>`;document.getElementById('fR').oninput=e=>{document.getElementById('fV').textContent=e.target.value;ss2('fs',e.target.value);document.getElementById('cE').style.fontSize=e.target.value+'px'};document.getElementById('tSR').oninput=e=>{document.getElementById('tS').textContent=e.target.value;ss2('ts',e.target.value)};c.querySelectorAll('.tg').forEach(tg=>tg.onclick=()=>{tg.classList.toggle('on');ss2(tg.dataset.k,tg.classList.contains('on'))});document.getElementById('svB').onclick=toast}
-  else if(curSec==='about'){c.innerHTML=`<div class="abl"><div class="abc"><div class="abn"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div></div></div><h1 class="abt">AQUA CODE V1</h1><div class="stl"><span class="stll">${t('settings_version')}</span><span class="stlv">1.0.0</span></div><div class="stl"><span class="stll">${t('settings_platform')}</span><span class="stlv">HTML/CSS/JS</span></div>`}
+// ═══════════════════════════════════════════════
+// настройки
+// ═══════════════════════════════════════════════
+let curSection='lang';
+function renderSettings(){
+  document.querySelectorAll('.settings-nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===curSection));
+  const c=document.getElementById('settingsContent');
+  if(curSection==='lang'){
+    c.innerHTML=`<h3>${t('s_lang')}</h3><div class="select-group"><div class="select-opt${locale==='ru'?' chosen':''}" data-v="ru">Русский</div><div class="select-opt${locale==='en'?' chosen':''}" data-v="en">English</div></div>`;
+    c.querySelectorAll('.select-opt').forEach(o=>o.onclick=()=>{locale=o.dataset.v;localStorage.setItem('lang',locale);document.getElementById('langBtn').textContent=locale.toUpperCase();updLang();renderSettings()});
+  }else if(curSection==='theme'){
+    const dark=!document.body.classList.contains('dark');
+    c.innerHTML=`<h3>${t('s_theme')}</h3><div class="option-row"><label>${t('s_dark')}</label><div class="toggle${dark?'':' on'}" id="themeToggle"></div></div>`;
+    document.getElementById('themeToggle').onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');renderSettings()};
+  }else if(curSection==='ai'){
+    c.innerHTML=`<h3>AI</h3><div class="option-row"><label>${t('s_ai')} — модель</label><span style="color:#0ea5e9;font-weight:600">AquaCode v1</span></div><div class="option-row"><label data-i18n="s_editor">Редактор</label><div class="select-group"><div class="select-opt chosen">Fira Code</div><div class="select-opt">Inter</div><div class="select-opt">JetBrains</div></div></div>`;
+  }else if(curSection==='editor'){
+    c.innerHTML=`<h3>${t('s_editor')}</h3><div class="option-row"><label>Размер шрифта</label><div style="display:flex;align-items:center;gap:12px"><input type="range" class="slider" min="10" max="24" value="14" id="fontSlider"><span class="slider-val" id="fontVal">14</span></div></div><div class="option-row"><label>Табуляция</label><div class="select-group"><div class="select-opt chosen">2</div><div class="select-opt">4</div><div class="select-opt">8</div></div></div>`;
+    document.getElementById('fontSlider').oninput=e=>{document.getElementById('fontVal').textContent=e.target.value;document.getElementById('codeEditor').style.fontSize=e.target.value+'px'};
+  }else if(curSection==='about'){
+    c.innerHTML=`<h3>${t('s_about')}</h3><p style="color:#6b7280;line-height:1.8">AquaCode — минималистичный редактор кода.<br>Версия 1.0.0<br>HTML + CSS + JavaScript</p>`;
+  }
 }
-function toast(){const d=document.createElement('div');d.className='toast';d.textContent=t('saved_ok');document.body.appendChild(d);setTimeout(()=>d.remove(),2000)}
-function showDlg(title,ph,cb){const o=document.getElementById('dO');document.getElementById('dT').textContent=title;document.getElementById('dI').placeholder=ph;document.getElementById('dI').value='';o.style.display='flex';document.getElementById('dI').focus();const cl=()=>o.style.display='none';document.getElementById('dOk').onclick=()=>{const v=document.getElementById('dI').value.trim();if(v){cb(v);cl()}};document.getElementById('dC').onclick=cl;document.getElementById('dI').onkeydown=e=>{if(e.key==='Enter'){const v=e.target.value.trim();if(v){cb(v);cl()}}}}
 
-function init(){
-  const sl=localStorage.getItem('a-l');if(sl)locale=sl;const st=localStorage.getItem('a-t');if(st)theme=st;
-  document.documentElement.className='theme-'+theme;document.getElementById('langLbl').textContent=locale.toUpperCase();updUI();rChat();
+// ═══════════════════════════════════════════════
+// диалог
+// ═══════════════════════════════════════════════
+let dialogCb=null;
+function showDialog(title,ph,cb){document.getElementById('dialogTitle').textContent=title;document.getElementById('dialogInput').placeholder=ph;document.getElementById('dialogInput').value='';document.getElementById('dialogOverlay').style.display='flex';document.getElementById('dialogInput').focus();dialogCb=cb}
+function closeDialog(){document.getElementById('dialogOverlay').style.display='none';dialogCb=null}
+document.getElementById('dialogConfirm').onclick=()=>{const v=document.getElementById('dialogInput').value.trim();if(v&&dialogCb){dialogCb(v);closeDialog()}};
+document.getElementById('dialogInput').onkeydown=e=>{if(e.key==='Enter'){const v=e.target.value.trim();if(v&&dialogCb){dialogCb(v);closeDialog()}}};
 
-  let showSb=true,showCh=true;
-  document.querySelectorAll('.ab-i').forEach(i=>i.onclick=()=>{
-    const p=i.dataset.p;
-    if(p==='exp'){showSb=!showSb;document.getElementById('sidebar').style.display=showSb?'flex':'none'}
-    else if(p==='ai'){showCh=!showCh;document.getElementById('chP').style.display=showCh?'flex':'none'}
-    else if(p==='set'){document.getElementById('mainL').style.display='none';document.getElementById('setScr').style.display='flex';curSec='lang';rSet()}
-    document.querySelectorAll('.ab-i').forEach(x=>x.classList.remove('on'));
-    if((p==='exp'&&showSb)||(p==='ai'&&showCh))i.classList.add('on');
+// ═══════════════════════════════════════════════
+// панели
+// ═══════════════════════════════════════════════
+let panels={files:true,chat:true,settings:false};
+function togglePanel(p){
+  if(p==='settings'){panels.settings=!panels.settings;document.getElementById('settingsScreen').style.display=panels.settings?'flex':'none';document.getElementById('editorArea').parentElement.style.display=panels.settings?'none':'flex';if(panels.settings)renderSettings();return}
+  panels[p]=!panels[p];
+  if(p==='files')document.getElementById('sidebar').style.display=panels.files?'flex':'none';
+  if(p==='chat')document.getElementById('chatPanel').style.display=panels.chat?'flex':'none';
+  document.querySelectorAll('.activity button').forEach(b=>{
+    const pp=b.dataset.panel;
+    b.classList.toggle('active',panels[pp]);
   });
-  document.getElementById('bK').onclick=()=>{document.getElementById('mainL').style.display='flex';document.getElementById('setScr').style.display='none'};
-  document.querySelectorAll('.ssi').forEach(i=>i.onclick=()=>{curSec=i.dataset.sec;rSet()});
-  document.getElementById('langBtn').onclick=()=>{setLocale(locale==='ru'?'en':'ru');document.getElementById('langLbl').textContent=locale.toUpperCase();if(document.getElementById('setScr').style.display==='flex')rSet()};
-  document.getElementById('sI').oninput=()=>rFT();
-  document.getElementById('fT').onclick=e=>{const el=e.target.closest('.fn');if(!el)return;const node=findN(el.dataset.p);if(!node)return;if(node.is_dir){if(exp.has(node.path))exp.delete(node.path);else exp.add(node.path)}else{selNode=node;openFile(node)}rFT()};
-  document.getElementById('fT').oncontextmenu=e=>{const el=e.target.closest('.fn');if(!el)return;e.preventDefault();const node=findN(el.dataset.p);if(!node)return;selNode=node;const m=document.getElementById('cm2');m.style.display='block';m.style.left=e.clientX+'px';m.style.top=e.clientY+'px';m.querySelector('[data-a="nf"]').style.display=node.is_dir?'flex':'none';m.querySelector('[data-a="nfi"]').style.display=node.is_dir?'flex':'none'};
-  document.addEventListener('click',()=>document.getElementById('cm2').style.display='none');
-  document.querySelectorAll('.cmi').forEach(i=>i.onclick=()=>{const a=i.dataset.a;if(!selNode)return;const pp=selNode.is_dir?selNode.path:findParent(selNode.path);
-    if(a==='nf')showDlg(t('new_folder'),t('folder_name'),name=>{const p=pp+'/'+name;const np={name,is_dir:true,path:p,children:[]};const par=findN(pp);if(par){if(!par.children)par.children=[];par.children.push(np)}else FT.push(np);exp.add(pp);rFT()});
-    else if(a==='nfi')showDlg(t('new_file'),t('file_name'),name=>{const p=pp+'/'+name;const nf={name,is_dir:false,path:p,content:''};const par=findN(pp);if(par){if(!par.children)par.children=[];par.children.push(nf)}else FT.push(nf);rFT()});
-    else if(a==='ren')showDlg(t('rename'),t('new_name'),name=>{const old=selNode.path;selNode.name=name;selNode.path=pp+'/'+name;if(selNode.children)selNode.children.forEach(c=>{c.path=selNode.path+'/'+c.name});rFT()});
-    else if(a==='cp')navigator.clipboard.writeText(selNode.path).then(toast);
-    else if(a==='del'){if(confirm(t('delete')+' "'+selNode.name+'"?')){const par=findN(findParent(selNode.path));if(par&&par.children)par.children=par.children.filter(c=>c!==selNode);else FT=FT.filter(c=>c!==selNode);selNode=null;rFT()}}
-    document.getElementById('cm2').style.display='none'});
-  const mkDir=isd=>showDlg(isd?t('new_folder'):t('new_file'),isd?t('folder_name'):t('file_name'),name=>{const fp='/'+name;if(isd)FT.push({name,is_dir:true,path:fp,children:[]});else FT.push({name,is_dir:false,path:fp,content:''});rFT()});
-  document.getElementById('nfb').onclick=()=>mkDir(true);document.getElementById('nfi').onclick=()=>mkDir(false);document.getElementById('fnf').onclick=()=>mkDir(true);document.getElementById('fni2').onclick=()=>mkDir(false);document.getElementById('ref').onclick=()=>rFT();
-  document.getElementById('eT').onclick=e=>{const cl=e.target.closest('.tbc');if(cl){closeFile(parseInt(cl.dataset.c));return}const tb=e.target.closest('.tb2');if(tb){const i=parseInt(tb.dataset.i);actF=openF[i];document.getElementById('cE').value=cache.get(actF.path)||'';document.getElementById('eSN').textContent=actF.name;rTabs();rLN()}};
-  const ed=document.getElementById('cE');ed.oninput=()=>{if(actF){cache.set(actF.path,ed.value);rLN()}};ed.onscroll=()=>{document.getElementById('lN').scrollTop=ed.scrollTop};ed.onkeydown=e=>{if(e.key==='Tab'){e.preventDefault();const s=ed.selectionStart,en=ed.selectionEnd;ed.value=ed.value.substring(0,s)+'  '+ed.value.substring(en);ed.selectionStart=ed.selectionEnd=s+2;if(actF)cache.set(actF.path,ed.value);rLN()}};
-  document.getElementById('sB').onclick=sendMsg;document.getElementById('cI').onkeydown=e=>{if(e.key==='Enter')sendMsg()};
-  function sendMsg(){const inp=document.getElementById('cI');if(!inp.value.trim())return;const txt=inp.value.trim();inp.value='';msgs.push({text:txt,u:true});rChat();document.getElementById('cTy').style.display='flex';setTimeout(()=>{msgs.push({text:genR(txt),u:false});document.getElementById('cTy').style.display='none';rChat()},800)}
-  document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key==='s'){e.preventDefault();toast()}});
-  ed.style.fontSize=gs('fs')+'px';
+}
+
+// ═══════════════════════════════════════════════
+// инициализация
+// ═══════════════════════════════════════════════
+function init(){
+  const sl=localStorage.getItem('lang');if(sl)locale=sl;
+  const th=localStorage.getItem('theme');if(th==='light')document.body.classList.remove('dark');
+  document.getElementById('langBtn').textContent=locale.toUpperCase();
+  updLang();renderFiles();renderChat();
+
+  // activity buttons
+  document.querySelectorAll('.activity button').forEach(b=>b.onclick=()=>togglePanel(b.dataset.panel));
+
+  // file tree
+  document.getElementById('fileTree').onclick=e=>{
+    const el=e.target.closest('.file-item');if(!el)return;
+    const node=findNode(el.dataset.p);if(!node)return;
+    if(node.d){if(expanded.has(node.p))expanded.delete(node.p);else expanded.add(node.p)}else{selected=node;openFile(node)}
+    renderFiles();
+  };
+  document.getElementById('fileTree').oncontextmenu=e=>{
+    const el=e.target.closest('.file-item');if(!el)return;e.preventDefault();
+    const node=findNode(el.dataset.p);if(!node)return;ctxNode=node;
+    const m=document.getElementById('ctxMenu');m.style.display='block';m.style.left=e.clientX+'px';m.style.top=e.clientY+'px';
+    m.querySelector('[data-action="newFolder"]').style.display=node.d?'flex':'none';
+    m.querySelector('[data-action="newFile"]').style.display=node.d?'flex':'none';
+  };
+  document.addEventListener('click',()=>document.getElementById('ctxMenu').style.display='none');
+  document.querySelectorAll('.ctx-item').forEach(i=>i.onclick=()=>{
+    const a=i.dataset.action;if(!ctxNode)return;
+    const pp=ctxNode.d?ctxNode.p:parentPath(ctxNode.p);
+    if(a==='newFolder')showDialog(t('c_newFolder'),t('d_folder_name'),name=>{const fp=pp+'/'+name;const np={n:name,d:true,p:fp,c:[]};const par=findNode(pp);if(par){if(!par.c)par.c=[];par.c.push(np)}else files.push(np);expanded.add(pp);renderFiles()});
+    else if(a==='newFile')showDialog(t('c_newFile'),t('d_file_name'),name=>{const fp=pp+'/'+name;const nf={n:name,d:false,p:fp,v:''};const par=findNode(pp);if(par){if(!par.c)par.c=[];par.c.push(nf)}else files.push(nf);renderFiles()});
+    else if(a==='rename')showDialog(t('c_rename'),t('d_new_name'),name=>{ctxNode.n=name;ctxNode.p=pp+'/'+name;renderFiles()});
+    else if(a==='copyPath')navigator.clipboard.writeText(ctxNode.p);
+    else if(a==='delete'){if(confirm(t('c_delete')+' "'+ctxNode.n+'"?')){const par=findNode(parentPath(ctxNode.p));if(par&&par.c)par.c=par.c.filter(c=>c!==ctxNode);else files=files.filter(c=>c!==ctxNode);ctxNode=null;renderFiles()}}
+    document.getElementById('ctxMenu').style.display='none';
+  });
+
+  // new file/folder
+  const mkDir=isd=>showDialog(isd?t('c_newFolder'):t('c_newFile'),isd?t('d_folder_name'):t('d_file_name'),name=>{const fp='/'+name;if(isd)files.push({n:name,d:true,p:fp,c:[]});else files.push({n:name,d:false,p:fp,v:''});renderFiles()});
+  document.getElementById('newFolderBtn').onclick=()=>mkDir(true);
+  document.getElementById('newFileBtn').onclick=()=>mkDir(false);
+
+  // tabs
+  document.getElementById('tabs').onclick=e=>{
+    const cl=e.target.closest('.tab-close');if(cl){closeTab(parseInt(cl.dataset.c));return}
+    const tab=e.target.closest('.tab');if(tab){const i=parseInt(tab.dataset.i);activeFile=openFiles[i];document.getElementById('codeEditor').value=cache.get(activeFile.p)||'';renderTabs();renderLines()}
+  };
+
+  // editor
+  const ed=document.getElementById('codeEditor');
+  ed.oninput=()=>{if(activeFile){cache.set(activeFile.p,ed.value);renderLines()}};
+  ed.onscroll=()=>{document.getElementById('lineNums').scrollTop=ed.scrollTop};
+  ed.onkeydown=e=>{if(e.key==='Tab'){e.preventDefault();const s=ed.selectionStart,en=ed.selectionEnd;ed.value=ed.value.substring(0,s)+'  '+ed.value.substring(en);ed.selectionStart=ed.selectionEnd=s+2;if(activeFile)cache.set(activeFile.p,ed.value);renderLines()}};
+
+  // chat
+  document.getElementById('sendBtn').onclick=sendMsg;
+  document.getElementById('chatInput').onkeydown=e=>{if(e.key==='Enter')sendMsg()};
+
+  // search
+  document.getElementById('searchInput').oninput=()=>renderFiles();
+
+  // settings nav
+  document.querySelectorAll('.settings-nav button').forEach(b=>b.onclick=()=>{curSection=b.dataset.section;renderSettings()});
+
+  // lang toggle
+  document.getElementById('langBtn').onclick=()=>{locale=locale==='ru'?'en':'ru';localStorage.setItem('lang',locale);document.getElementById('langBtn').textContent=locale.toUpperCase();updLang();if(panels.settings)renderSettings()};
 }
 document.addEventListener('DOMContentLoaded',init);
 </script>
