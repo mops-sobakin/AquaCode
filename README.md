@@ -1,101 +1,22 @@
-# Aqua Code V1
+# Aqua Code
 
-AI-powered IDE с современным дизайном. Работает прямо в браузере.
+AI-powered IDE with Ice Code V1 integration.
 
-## Что это?
+## Features
 
-Красивый редактор кода с:
-- 3 темами (Dark, Aqua, White)
-- Локализацией (Русский / Английский)
-- Файловым проводником
-- Редактором кода с табами и номерами строк
-- AI-чатом
-- Полными настройками
+- Three themes: Dark, Aqua, White
+- File explorer
+- Code editor
+- AI chat with Ice Code V1
+- Keyboard shortcuts
 
-## Как запустить
-
-### Вариант 1: Открыть в браузере (рекомендуется)
-
-1. Скачайте файл `index.html`
-2. Откройте его в любом браузере (Chrome, Firefox, Edge)
-3. Готово!
-
-### Вариант 2: Через Tauri (десктопное приложение)
-
-Требуется:
-- [Node.js](https://nodejs.org/) v20+
-- [Rust](https://rustup.rs/) v1.75+
+## Getting Started
 
 ```bash
-# Установите зависимости
-npm install
-
-# Соберите иконки
-npx tauri icon path/to/your/icon.png
-
-# Запустите в режиме разработки
-npm run dev
-
-# Соберите релиз
-npm run build
+flutter run -d windows
 ```
 
-## Структура проекта
+## Keyboard Shortcuts
 
-```
-aqua_code_tauri/
-├── index.html          ← Главный файл (открой в браузере)
-├── src/
-│   └── index.html      ← То же для Tauri
-├── src-tauri/
-│   ├── Cargo.toml
-│   ├── tauri.conf.json
-│   └── src/
-│       ├── main.rs
-│       └── lib.rs
-└── package.json
-```
-
-## Возможности
-
-### Проводник
-- Дерево файлов и папок
-- Раскрытие/сворачивание папок
-- Поиск файлов
-- Создание новых файлов и папок
-- Переименование
-- Удаление
-- Копирование пути
-
-### Редактор
-- Открытие файлов по клику
-- Табы для нескольких файлов
-- Номера строк
-- Редактирование кода
-- Сохранение (Ctrl+S)
-
-### AI-чат
-- Ответы на русском и английском
-- Индикатор набора текста
-
-### Настройки
-- **Язык**: Русский / Английский
-- **Тема**: Dark / Aqua / White
-- **AI**: Модель, температура, автодополнение, ошибки, рефакторинг, документация
-- **Редактор**: Размер шрифта, табуляция, перенос строк, номера строк, автосохранение
-
-### Горячие клавиши
-- `Ctrl+S` — Сохранить
-- `Tab` — Вставить 2 пробела
-
-## Технологии
-
-- HTML5
-- CSS3 (Custom Properties, Grid, Flexbox)
-- Vanilla JavaScript
-- Google Fonts (Inter, JetBrains Mono, Orbitron)
-- Tauri 2 (для десктопной версии)
-
-## Лицензия
-
-MIT
+- `Ctrl+B`: Toggle sidebar
+- `Ctrl+J`: Toggle AI panel
